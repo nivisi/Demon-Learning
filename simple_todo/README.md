@@ -2,6 +2,16 @@
 
 A simple TODO app that stores the data in [Shared Preferences](https://pub.dev/packages/shared_preferences).
 
+## Definition of done
+
+- [ ] I can open the app and see the list of previously created todos. If the list is empty, I'll see the corresponding message;
+- [ ] I can tap on the checkmark to complete/uncomplete a TODO record;
+- [ ] I can tap on the record to view the details of a TODO record;
+- [ ] I can add a todo;
+- [ ] I can work with records: view their details, edit and remove them;
+- [ ] When I edit a todo, the list on the main page is also updated;
+- [ ] I cannot create a todo with an empty title, I also cannot edit a todo to have an empty title.
+
 ## Requirements:
 
 ### Data
@@ -31,7 +41,9 @@ If the user taps on the item, the TODO details screen must be opened. This scree
 In the app bar we display `TODO details` and a button (three vertical dots) to open a menu with such options:
 
 - `Complete` / `Uncomplete` depending on the `completed` status of a todo item;
-- `Save` that saves the todo item and closes the screen.
+- `Save` that saves the todo item and closes the screen;
+- A separator
+- `Delete` (with red color) to delete the existing record.
 
 For now, if you close the screen w/o saving, let the data be lost. We will handle this later on. 
 
