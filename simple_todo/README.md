@@ -12,7 +12,7 @@ A simple TODO app that stores the data in [Shared Preferences](https://pub.dev/p
 - [ ] When I edit a todo, the list on the main page is also updated;
 - [ ] I cannot create a todo with an empty title, I also cannot edit a todo to have an empty title.
 
-## Requirements:
+## Requirements
 
 ### Data
 
