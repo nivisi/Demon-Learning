@@ -1,0 +1,3 @@
+class TodoModel {
+  // Fill it!
+}
