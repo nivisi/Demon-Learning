@@ -1,4 +1,6 @@
-class TodoModel {
+import 'package:flutter/foundation.dart';
+
+class TodoModel with ChangeNotifier {
   final String id;
   final String title;
   final DateTime createdAt;
@@ -12,4 +14,9 @@ class TodoModel {
     required this.createdAt,
     this.description,
   });
+
+  void toggleCompleteStatus() {
+    isComplete = !isComplete;
+    notifyListeners();
+  }
 }
