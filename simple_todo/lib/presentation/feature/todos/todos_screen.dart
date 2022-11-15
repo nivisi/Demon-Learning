@@ -32,8 +32,19 @@ class TodosScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('Here is empty list!\nAdd your first To Do!'),
+                  const Text(
+                    'Here is empty list!\nAdd your first To Do!',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   FloatingActionButton(
+                    elevation: 0,
                     onPressed: () {},
                     child: const Icon(Icons.add),
                   ),
