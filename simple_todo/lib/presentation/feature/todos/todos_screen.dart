@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../widgets/todo_tile.dart';
 import '/domain/todo_list.dart';
-import '../todo/todo_screen.dart';
 
 /// Displays the list of all the todo items.
 class TodosScreen extends StatelessWidget {
@@ -33,9 +33,9 @@ class TodosScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text('Here is empty list!\nAdd your first To Do!'),
-                  IconButton(
+                  FloatingActionButton(
                     onPressed: () {},
-                    icon: const Icon(Icons.add),
+                    child: const Icon(Icons.add),
                   ),
                 ],
               ),
