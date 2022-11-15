@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '/domain/todo_list.dart';
+import '../todo/todo_screen.dart';
 
 /// Displays the list of all the todo items.
 class TodosScreen extends StatelessWidget {
@@ -39,7 +40,13 @@ class TodosScreen extends StatelessWidget {
                 ],
               ),
             )
-          : 
+          : ListView.builder(
+              itemCount: todo.todolist.length,
+              itemBuilder: (context, i) => ChangeNotifierProvider.value(
+                value: todo.todolist[i],
+                child: const TodoTile(),
+              ),
+            ),
     );
   }
 }
