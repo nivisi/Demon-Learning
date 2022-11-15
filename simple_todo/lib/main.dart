@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import './domain/todo_list.dart';
 import 'package:simple_todo/presentation/feature/todos/todos_screen.dart';
 
 void main() {
@@ -15,12 +18,15 @@ class SimpleTodoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Simple TODO App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ChangeNotifierProvider<TodoList>(
+      create: (context) => TodoList(),
+      child: MaterialApp(
+        title: 'Simple TODO App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const TodosScreen(),
       ),
-      home: const TodosScreen(),
     );
   }
 }
