@@ -17,10 +17,10 @@ class TodoList with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateTodo(TodoModel todo) {
-    final todoIndex = _todolist.indexWhere((td) => td.id == todo.id);
+  void updateTodo(TodoModel? todo) {
+    final todoIndex = _todolist.indexWhere((td) => td.id == todo!.id);
     if (todoIndex >= 0) {
-      _todolist[todoIndex] = todo;
+      _todolist[todoIndex] = todo!;
       notifyListeners();
     }
   }
