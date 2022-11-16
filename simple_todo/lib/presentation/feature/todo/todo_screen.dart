@@ -8,10 +8,31 @@ class TodoScreen extends StatelessWidget {
     required this.model,
   });
 
-  final TodoModel model;
+  final TodoModel? model;
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    bool exist;
+    if (model == null) {
+      exist = false;
+    } else {
+      exist = true;
+    }
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('What\'s here?'),
+        actions: [
+          exist
+              ? IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.more_horiz),
+                )
+              : IconButton(
+                  icon: const Icon(Icons.save),
+                  onPressed: () {},
+                ),
+        ],
+      ),
+    );
   }
 }
