@@ -8,4 +8,12 @@ class TodoList with ChangeNotifier {
   List<TodoModel> get todolist {
     return [..._todolist];
   }
+
+  void addTodo(TodoModel? todo) {
+    if (todo == null) {
+      return;
+    }
+    _todolist.add(todo);
+    notifyListeners();
+  }
 }
