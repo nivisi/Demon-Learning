@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../widgets/todo_tile.dart';
 import '/domain/todo_list.dart';
+import '/domain/todo_model.dart';
 import '../todo/todo_screen.dart';
 
 /// Displays the list of all the todo items.
@@ -13,7 +14,6 @@ class TodosScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final todo = Provider.of<TodoList>(
       context,
-      listen: false,
     );
     return Scaffold(
       appBar: AppBar(
