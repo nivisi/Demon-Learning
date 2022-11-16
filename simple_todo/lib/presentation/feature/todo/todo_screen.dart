@@ -34,7 +34,6 @@ class _TodoScreenState extends State<TodoScreen> {
       //update todo
     } else {
       Provider.of<TodoList>(context, listen: false).addTodo(widget.model);
-      print(widget.model!.createdAt);
     }
     Navigator.of(context).pop();
   }
@@ -46,20 +45,44 @@ class _TodoScreenState extends State<TodoScreen> {
     } else {
       exist = true;
     }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('What\'s here?'),
         actions: [
           exist
-              ? IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.more_horiz),
+              ? PopupMenuButton(
+                  icon: const Icon(Icons.more_vert),
+                  itemBuilder: (_) {
+                    return [
+                      PopupMenuItem(
+                        onTap: () => widget.model!.toggleCompleteStatus(),
+                        child: widget.model!.isComplete
+                            ? Row(
+                                children: [
+                                  Icon(
+                                    Icons.check_box_outline_blank,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  const Text(' Uncompleted')
+                                ],
+                              )
+                            : Row(
+                                children: [
+                                  Icon(
+                                    Icons.check_box,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                  const Text(' Complete')
+                                ],
+                              ),
+                      ),
+                    ];
+                  },
                 )
               : IconButton(
                   icon: const Icon(Icons.save),
-                  onPressed: () {
-                    _saveForm();
-                  },
+                  onPressed: _saveForm,
                 ),
         ],
       ),
