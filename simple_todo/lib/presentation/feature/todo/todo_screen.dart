@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_todo/domain/todo_model.dart';
 
 /// Displays the details about the given todo.
-class TodoScreen extends StatelessWidget {
+class TodoScreen extends StatefulWidget {
   const TodoScreen({
     super.key,
     required this.model,
@@ -11,9 +11,14 @@ class TodoScreen extends StatelessWidget {
   final TodoModel? model;
 
   @override
+  State<TodoScreen> createState() => _TodoScreenState();
+}
+
+class _TodoScreenState extends State<TodoScreen> {
+  @override
   Widget build(BuildContext context) {
     bool exist;
-    if (model == null) {
+    if (widget.model == null) {
       exist = false;
     } else {
       exist = true;
