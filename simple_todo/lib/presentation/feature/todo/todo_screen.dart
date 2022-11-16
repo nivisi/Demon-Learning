@@ -15,6 +15,9 @@ class TodoScreen extends StatefulWidget {
 }
 
 class _TodoScreenState extends State<TodoScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  final _descriptionFocusNode = FocusNode();
+
   @override
   Widget build(BuildContext context) {
     bool exist;
@@ -37,6 +40,13 @@ class _TodoScreenState extends State<TodoScreen> {
                   onPressed: () {},
                 ),
         ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Form(
+          key: _formKey,
+          child: ListView(),
+        ),
       ),
     );
   }
