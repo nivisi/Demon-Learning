@@ -31,7 +31,10 @@ class _TodoScreenState extends State<TodoScreen> {
     }
     _formKey.currentState!.save();
     if (exist) {
-      //update todo
+      Provider.of<TodoList>(
+        context,
+        listen: false,
+      ).updateTodo(widget.model);
     } else {
       Provider.of<TodoList>(context, listen: false).addTodo(widget.model);
     }
@@ -87,7 +90,7 @@ class _TodoScreenState extends State<TodoScreen> {
                             const Text(' Save Todo')
                           ],
                         ),
-                        onTap: () {},
+                        onTap: () => _saveForm(),
                       ),
                       const PopupMenuItem(enabled: false, child: Divider()),
                       PopupMenuItem(
