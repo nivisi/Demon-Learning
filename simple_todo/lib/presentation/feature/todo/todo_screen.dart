@@ -100,10 +100,12 @@ class _TodoScreenState extends State<TodoScreen> {
                               Icons.delete,
                               color: Theme.of(context).errorColor,
                             ),
-                            const Text('Delete')
+                            const Text('Delete'),
                           ],
                         ),
-                        onTap: () {},
+                        onTap: () =>
+                            Provider.of<TodoList>(context, listen: false)
+                                .deleteTodo(widget.model!.id, context),
                       ),
                     ];
                   },
