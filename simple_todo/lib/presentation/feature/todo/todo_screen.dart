@@ -79,33 +79,30 @@ class _TodoScreenState extends State<TodoScreen> {
                         onTap: () => widget.model!.toggleCompleteStatus(),
                         child: widget.model!.isComplete
                             ? Row(
-                                children: [
+                                children: const [
                                   Icon(
                                     Icons.check_box_outline_blank,
-                                    color: Theme.of(context).primaryColor,
                                   ),
-                                  const Text(' Uncompleted')
+                                  Text(' Uncompleted')
                                 ],
                               )
                             : Row(
-                                children: [
+                                children: const [
                                   Icon(
                                     Icons.check_box,
-                                    color: Theme.of(context).primaryColor,
                                   ),
-                                  const Text(' Complete')
+                                  Text(' Complete')
                                 ],
                               ),
                       ),
                       const PopupMenuDivider(),
                       PopupMenuItem(
                         child: Row(
-                          children: [
+                          children: const [
                             Icon(
                               Icons.save,
-                              color: Theme.of(context).primaryColor,
                             ),
-                            const Text(' Save Todo')
+                            Text(' Save Todo')
                           ],
                         ),
                         onTap: () => _saveForm(),
@@ -113,25 +110,24 @@ class _TodoScreenState extends State<TodoScreen> {
                       const PopupMenuDivider(),
                       PopupMenuItem(
                         child: Row(
-                          children: [
+                          children: const [
                             Icon(
                               Icons.delete,
-                              color: Theme.of(context).errorColor,
                             ),
-                            const Text('Delete'),
+                            Text(' Delete'),
                           ],
                         ),
                         onTap: () =>
                             Provider.of<TodoList>(context, listen: false)
                                 .deleteTodo(widget.model!.id, context),
                       ),
-                    ];
-                  },
-                )
-              : IconButton(
-                  icon: const Icon(Icons.save),
-                  onPressed: _saveForm,
-                ),
+                    ],
+                  )
+                : IconButton(
+                    icon: const Icon(Icons.save),
+                    onPressed: _saveForm,
+                  ),
+          ),
         ],
       ),
       body: Padding(
