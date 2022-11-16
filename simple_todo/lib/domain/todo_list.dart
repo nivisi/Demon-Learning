@@ -25,10 +25,9 @@ class TodoList with ChangeNotifier {
     }
   }
 
-  void deleteTodo(String? id, BuildContext context) {
+  void deleteTodo(String? id) {
     final existingTodoIndex = _todolist.indexWhere((td) => td.id == id);
     _todolist.removeAt(existingTodoIndex);
     notifyListeners();
-    Navigator.of(context).pop();
   }
 }
