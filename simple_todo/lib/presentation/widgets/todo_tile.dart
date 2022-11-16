@@ -37,8 +37,11 @@ class TodoTile extends StatelessWidget {
           title: Text(
             todo.title,
             style: todo.isComplete
-                ? const TextStyle(decoration: TextDecoration.lineThrough)
-                : null,
+                ? const TextStyle(
+                    decoration: TextDecoration.lineThrough,
+                    fontSize: 20,
+                  )
+                : const TextStyle(fontSize: 20),
           ),
         ),
       ),
