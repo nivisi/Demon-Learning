@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../../widgets/todo_tile.dart';
 import '/domain/todo_list.dart';
-import '/domain/todo_model.dart';
 import '../todo/todo_screen.dart';
 
 /// Displays the list of all the todo items.
@@ -63,6 +62,10 @@ class TodosScreen extends StatelessWidget {
                 child: const TodoTile(),
               ),
             ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.of(context).pushNamed(TodoScreen.routeName),
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
