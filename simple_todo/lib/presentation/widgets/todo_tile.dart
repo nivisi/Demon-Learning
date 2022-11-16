@@ -22,6 +22,9 @@ class TodoTile extends StatelessWidget {
           },
           leading: FittedBox(
             child: Checkbox(
+              fillColor: MaterialStateColor.resolveWith(
+                (states) => Theme.of(context).colorScheme.primary,
+              ),
               value: todo.isComplete,
               onChanged: (_) {
                 todo.toggleCompleteStatus();
