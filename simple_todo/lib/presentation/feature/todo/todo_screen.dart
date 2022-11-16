@@ -77,6 +77,31 @@ class _TodoScreenState extends State<TodoScreen> {
                                 ],
                               ),
                       ),
+                      PopupMenuItem(
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.save,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            const Text(' Save Todo')
+                          ],
+                        ),
+                        onTap: () {},
+                      ),
+                      const PopupMenuItem(enabled: false, child: Divider()),
+                      PopupMenuItem(
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.delete,
+                              color: Theme.of(context).errorColor,
+                            ),
+                            const Text('Delete')
+                          ],
+                        ),
+                        onTap: () {},
+                      ),
                     ];
                   },
                 )
