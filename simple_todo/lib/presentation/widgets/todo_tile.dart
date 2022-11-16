@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:simple_todo/presentation/feature/todo/todo_screen.dart';
 import '/domain/todo_model.dart';
 
 class TodoTile extends StatelessWidget {
@@ -10,6 +11,13 @@ class TodoTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<TodoModel>(
       builder: (_, todo, ch) => ListTile(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (BuildContext context) => TodoScreen(model: todo),
+            ),
+          );
+        },
         leading: FittedBox(
           child: Checkbox(
             value: todo.isComplete,
