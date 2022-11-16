@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:simple_todo/presentation/feature/todo/todo_screen.dart';
+import '/domain/todo_list.dart';
+import '/presentation/feature/todo/todo_screen.dart';
 import '/domain/todo_model.dart';
 
 class TodoTile extends StatelessWidget {
@@ -11,12 +12,18 @@ class TodoTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<TodoModel>(
       builder: (_, todo, ch) => Dismissible(
-        key: ValueKey(todo.id),
+        key: ValueKey(
+          todo.id,
+        ),
         confirmDismiss: (direction) => showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
-            title: const Text('Delete?'),
-            content: const Text('Do you want to delete this todo?'),
+            title: const Text(
+              'Delete?',
+            ),
+            content: const Text(
+              'Do you want to delete this todo?',
+            ),
             actions: [
               TextButton(
                 onPressed: () {
@@ -28,38 +35,52 @@ class TodoTile extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(ctx).pop(true);
                 },
-                child: const Text('Yes'),
+                child: const Text(
+                  'Yes',
+                ),
               )
             ],
           ),
         ),
         background: Container(
           color: Theme.of(context).errorColor,
+          alignment: Alignment.centerRight,
+          padding: const EdgeInsets.only(
+            right: 20,
+          ),
+          margin: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 4,
+          ),
           child: const Icon(
             Icons.delete,
             color: Colors.white,
             size: 40,
           ),
-          alignment: Alignment.centerRight,
-          padding: EdgeInsets.only(right: 20),
-          margin: const EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 4,
-          ),
         ),
         direction: DismissDirection.endToStart,
-        onDismissed: (direction) =>
-            Provider.of<TodoList>(context, listen: false).deleteTodo(todo.id),
+        onDismissed: (direction) => Provider.of<TodoList>(
+          context,
+          listen: false,
+        ).deleteTodo(
+          todo.id,
+        ),
         child: Card(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(
+              15.0,
+            ),
           ),
-          margin: const EdgeInsets.all(5),
+          margin: const EdgeInsets.all(
+            5.0,
+          ),
           child: ListTile(
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute<void>(
-                  builder: (BuildContext context) => TodoScreen(model: todo),
+                  builder: (BuildContext context) => TodoScreen(
+                    model: todo,
+                  ),
                 ),
               );
             },
@@ -81,7 +102,9 @@ class TodoTile extends StatelessWidget {
                       decoration: TextDecoration.lineThrough,
                       fontSize: 20,
                     )
-                  : const TextStyle(fontSize: 20),
+                  : const TextStyle(
+                      fontSize: 20,
+                    ),
             ),
           ),
         ),

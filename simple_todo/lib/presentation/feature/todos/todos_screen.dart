@@ -17,11 +17,15 @@ class TodosScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Your to-do list'),
+        title: const Text(
+          'Your to-do list',
+        ),
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed(TodoScreen.routeName);
+              Navigator.of(context).pushNamed(
+                TodoScreen.routeName,
+              );
             },
             icon: const Icon(
               Icons.add,
@@ -48,9 +52,13 @@ class TodosScreen extends StatelessWidget {
                   FloatingActionButton(
                     elevation: 0,
                     onPressed: () {
-                      Navigator.of(context).pushNamed(TodoScreen.routeName);
+                      Navigator.of(context).pushNamed(
+                        TodoScreen.routeName,
+                      );
                     },
-                    child: const Icon(Icons.add),
+                    child: const Icon(
+                      Icons.add,
+                    ),
                   ),
                 ],
               ),
@@ -65,8 +73,9 @@ class TodosScreen extends StatelessWidget {
       floatingActionButton: todo.todolist.isEmpty
           ? null
           : FloatingActionButton(
-              onPressed: () =>
-                  Navigator.of(context).pushNamed(TodoScreen.routeName),
+              onPressed: () => Navigator.of(context).pushNamed(
+                TodoScreen.routeName,
+              ),
               child: const Icon(Icons.add),
             ),
     );

@@ -36,7 +36,12 @@ class _TodoScreenState extends State<TodoScreen> {
         listen: false,
       ).updateTodo(widget.model);
     } else {
-      Provider.of<TodoList>(context, listen: false).addTodo(widget.model);
+      Provider.of<TodoList>(
+        context,
+        listen: false,
+      ).addTodo(
+        widget.model,
+      );
     }
     Navigator.of(context).pop();
   }
@@ -51,7 +56,9 @@ class _TodoScreenState extends State<TodoScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TODO details'),
+        title: const Text(
+          'TODO details',
+        ),
         centerTitle: true,
         actions: [
           Theme(
@@ -59,9 +66,12 @@ class _TodoScreenState extends State<TodoScreen> {
               dividerTheme: const DividerThemeData(
                 color: Colors.white,
               ),
-              iconTheme:
-                  IconThemeData(color: Theme.of(context).colorScheme.secondary),
-              textTheme: const TextTheme().apply(bodyColor: Colors.white),
+              iconTheme: IconThemeData(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+              textTheme: const TextTheme().apply(
+                bodyColor: Colors.white,
+              ),
             ),
             child: exist
                 ? PopupMenuButton<int>(
@@ -70,9 +80,13 @@ class _TodoScreenState extends State<TodoScreen> {
                           color: Colors.white,
                         ) +
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius: BorderRadius.circular(
+                            15.0,
+                          ),
                         ),
-                    icon: const Icon(Icons.more_vert),
+                    icon: const Icon(
+                      Icons.more_vert,
+                    ),
                     color: Theme.of(context).colorScheme.primary,
                     itemBuilder: (context) => [
                       PopupMenuItem(
@@ -83,7 +97,9 @@ class _TodoScreenState extends State<TodoScreen> {
                                   Icon(
                                     Icons.check_box_outline_blank,
                                   ),
-                                  Text(' Uncompleted')
+                                  Text(
+                                    ' Uncompleted',
+                                  ),
                                 ],
                               )
                             : Row(
@@ -91,7 +107,9 @@ class _TodoScreenState extends State<TodoScreen> {
                                   Icon(
                                     Icons.check_box,
                                   ),
-                                  Text(' Complete')
+                                  Text(
+                                    ' Complete',
+                                  ),
                                 ],
                               ),
                       ),
@@ -102,7 +120,9 @@ class _TodoScreenState extends State<TodoScreen> {
                             Icon(
                               Icons.save,
                             ),
-                            Text(' Save Todo')
+                            Text(
+                              ' Save Todo',
+                            ),
                           ],
                         ),
                         onTap: () => _saveForm(),
@@ -114,26 +134,36 @@ class _TodoScreenState extends State<TodoScreen> {
                             Icon(
                               Icons.delete,
                             ),
-                            Text(' Delete'),
+                            Text(
+                              ' Delete',
+                            ),
                           ],
                         ),
                         onTap: () {
-                          Provider.of<TodoList>(context, listen: false)
-                              .deleteTodo(widget.model!.id);
+                          Provider.of<TodoList>(
+                            context,
+                            listen: false,
+                          ).deleteTodo(
+                            widget.model!.id,
+                          );
                           Navigator.of(context).pop();
                         },
                       ),
                     ],
                   )
                 : IconButton(
-                    icon: const Icon(Icons.save),
+                    icon: const Icon(
+                      Icons.save,
+                    ),
                     onPressed: _saveForm,
                   ),
           ),
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(
+          10.0,
+        ),
         child: Form(
           key: _formKey,
           child: ListView(
@@ -183,8 +213,12 @@ class _TodoScreenState extends State<TodoScreen> {
                 onPressed: () {
                   _saveForm();
                 },
-                label: const Text('Add'),
-                icon: const Icon(Icons.add),
+                label: const Text(
+                  'Add',
+                ),
+                icon: const Icon(
+                  Icons.add,
+                ),
               ),
             ],
           ),

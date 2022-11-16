@@ -26,7 +26,9 @@ class SimpleTodoApp extends StatelessWidget {
         theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(
             primarySwatch: Colors.deepPurple,
-          ).copyWith(secondary: const Color.fromARGB(255, 236, 179, 255)),
+          ).copyWith(
+            secondary: const Color.fromARGB(255, 236, 179, 255),
+          ),
           canvasColor: const Color.fromRGBO(255, 254, 229, 1),
           fontFamily: 'Raleway',
           textTheme: ThemeData.light().textTheme.copyWith(
@@ -37,9 +39,10 @@ class SimpleTodoApp extends StatelessWidget {
                   color: Color.fromRGBO(20, 51, 51, 1),
                 ),
                 headline6: const TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'RobotoCondensed',
-                    fontWeight: FontWeight.bold),
+                  fontSize: 20,
+                  fontFamily: 'RobotoCondensed',
+                  fontWeight: FontWeight.bold,
+                ),
               ),
           appBarTheme: const AppBarTheme(
               titleTextStyle: TextStyle(
