@@ -80,6 +80,7 @@ class _TodoScreenState extends State<TodoScreen> {
                                 ],
                               ),
                       ),
+                      const PopupMenuDivider(),
                       PopupMenuItem(
                         child: Row(
                           children: [
@@ -92,7 +93,7 @@ class _TodoScreenState extends State<TodoScreen> {
                         ),
                         onTap: () => _saveForm(),
                       ),
-                      const PopupMenuItem(enabled: false, child: Divider()),
+                      const PopupMenuDivider(),
                       PopupMenuItem(
                         child: Row(
                           children: [
