@@ -24,7 +24,28 @@ class SimpleTodoApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Simple TODO App',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.deepPurple,
+          ).copyWith(secondary: const Color.fromARGB(255, 236, 179, 255)),
+          canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+          fontFamily: 'Raleway',
+          textTheme: ThemeData.light().textTheme.copyWith(
+                bodyText1: const TextStyle(
+                  color: Color.fromRGBO(20, 51, 51, 1),
+                ),
+                bodyText2: const TextStyle(
+                  color: Color.fromRGBO(20, 51, 51, 1),
+                ),
+                headline6: const TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'RobotoCondensed',
+                    fontWeight: FontWeight.bold),
+              ),
+          appBarTheme: const AppBarTheme(
+              titleTextStyle: TextStyle(
+                  color: Color.fromARGB(255, 236, 179, 255),
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold)),
         ),
         home: const TodosScreen(),
         routes: {
