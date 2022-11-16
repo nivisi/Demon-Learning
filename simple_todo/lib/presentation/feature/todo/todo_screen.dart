@@ -178,6 +178,16 @@ class _TodoScreenState extends State<TodoScreen> {
                   description: newValue,
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
+              TextButton.icon(
+                onPressed: () {
+                  _saveForm();
+                },
+                label: const Text('Add'),
+                icon: const Icon(Icons.add),
+              ),
             ],
           ),
         ),
