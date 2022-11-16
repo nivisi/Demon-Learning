@@ -117,9 +117,11 @@ class _TodoScreenState extends State<TodoScreen> {
                             Text(' Delete'),
                           ],
                         ),
-                        onTap: () =>
-                            Provider.of<TodoList>(context, listen: false)
-                                .deleteTodo(widget.model!.id, context),
+                        onTap: () {
+                          Provider.of<TodoList>(context, listen: false)
+                              .deleteTodo(widget.model!.id);
+                          Navigator.of(context).pop();
+                        },
                       ),
                     ],
                   )
