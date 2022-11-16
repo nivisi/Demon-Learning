@@ -177,7 +177,7 @@ class _TodoScreenState extends State<TodoScreen> {
               const SizedBox(
                 height: 10,
               ),
-              TextButton.icon(
+              ElevatedButton.icon(
                 onPressed: () {
                   _saveForm();
                 },
