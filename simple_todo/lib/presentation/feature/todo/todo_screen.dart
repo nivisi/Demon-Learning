@@ -5,9 +5,10 @@ import 'package:simple_todo/domain/todo_model.dart';
 
 /// Displays the details about the given todo.
 class TodoScreen extends StatefulWidget {
+  static const routeName = '/todo-details';
   TodoScreen({
     super.key,
-    required this.model,
+    this.model,
   });
 
   TodoModel? model;
@@ -17,12 +18,12 @@ class TodoScreen extends StatefulWidget {
 }
 
 class _TodoScreenState extends State<TodoScreen> {
+  bool exist = false;
   final GlobalKey<FormState> _formKey = GlobalKey();
   final _descriptionFocusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
-    bool exist;
     if (widget.model == null) {
       exist = false;
     } else {
