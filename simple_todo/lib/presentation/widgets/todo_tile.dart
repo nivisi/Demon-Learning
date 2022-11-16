@@ -11,6 +11,9 @@ class TodoTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<TodoModel>(
       builder: (_, todo, ch) => Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
         margin: const EdgeInsets.all(5),
         child: ListTile(
           onTap: () {
