@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
+import 'package:provider/provider.dart';
 
 import 'package:simple_todo/domain/todo_model.dart';
+import 'package:simple_todo/domain/todo_list.dart';
 
 /// Displays the details about the given todo.
 class TodoScreen extends StatefulWidget {
@@ -22,6 +24,21 @@ class _TodoScreenState extends State<TodoScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
   final _descriptionFocusNode = FocusNode();
 
+  void _saveForm() {
+    final isValid = _formKey.currentState?.validate();
+    if (!isValid!) {
+      return;
+    }
+    _formKey.currentState!.save();
+    if (exist) {
+      //update todo
+    } else {
+      Provider.of<TodoList>(context, listen: false).addTodo(widget.model);
+      print(widget.model!.createdAt);
+    }
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.model == null) {
@@ -40,7 +57,9 @@ class _TodoScreenState extends State<TodoScreen> {
                 )
               : IconButton(
                   icon: const Icon(Icons.save),
-                  onPressed: () {},
+                  onPressed: () {
+                    _saveForm();
+                  },
                 ),
         ],
       ),
