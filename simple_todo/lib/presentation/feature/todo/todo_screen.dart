@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
+
 import 'package:simple_todo/domain/todo_model.dart';
 
 /// Displays the details about the given todo.
 class TodoScreen extends StatefulWidget {
-  const TodoScreen({
+  TodoScreen({
     super.key,
     required this.model,
   });
 
-  final TodoModel? model;
+  TodoModel? model;
 
   @override
   State<TodoScreen> createState() => _TodoScreenState();
@@ -45,7 +47,29 @@ class _TodoScreenState extends State<TodoScreen> {
         padding: const EdgeInsets.all(10.0),
         child: Form(
           key: _formKey,
-          child: ListView(),
+          child: ListView(
+            children: [
+              TextFormField(
+                initialValue: exist ? widget.model?.title : null,
+                decoration: const InputDecoration(labelText: 'Title'),
+                textInputAction: TextInputAction.next,
+                onFieldSubmitted: (_) =>
+                    FocusScope.of(context).requestFocus(_descriptionFocusNode),
+                validator: (value) {
+                  if (value == null) {
+                    return 'Please write your title';
+                  }
+                  return null;
+                },
+                onSaved: (newValue) => widget.model = TodoModel(
+                  id: exist ? widget.model!.id : const Uuid().v1(),
+                  title: newValue!,
+                  createdAt: exist ? widget.model!.createdAt : DateTime.now(),
+                ),
+              ),
+              TextFormField(),
+            ],
+          ),
         ),
       ),
     );
