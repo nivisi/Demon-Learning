@@ -10,27 +10,30 @@ class TodoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<TodoModel>(
-      builder: (_, todo, ch) => ListTile(
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute<void>(
-              builder: (BuildContext context) => TodoScreen(model: todo),
+      builder: (_, todo, ch) => Card(
+        margin: const EdgeInsets.all(5),
+        child: ListTile(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (BuildContext context) => TodoScreen(model: todo),
+              ),
+            );
+          },
+          leading: FittedBox(
+            child: Checkbox(
+              value: todo.isComplete,
+              onChanged: (_) {
+                todo.toggleCompleteStatus();
+              },
             ),
-          );
-        },
-        leading: FittedBox(
-          child: Checkbox(
-            value: todo.isComplete,
-            onChanged: (_) {
-              todo.toggleCompleteStatus();
-            },
           ),
-        ),
-        title: Text(
-          todo.title,
-          style: todo.isComplete
-              ? const TextStyle(decoration: TextDecoration.lineThrough)
-              : null,
+          title: Text(
+            todo.title,
+            style: todo.isComplete
+                ? const TextStyle(decoration: TextDecoration.lineThrough)
+                : null,
+          ),
         ),
       ),
     );
