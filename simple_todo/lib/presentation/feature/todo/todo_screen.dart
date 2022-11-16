@@ -66,9 +66,12 @@ class _TodoScreenState extends State<TodoScreen> {
             child: exist
                 ? PopupMenuButton<int>(
                     shape: Border.all(
-                        width: 0.2,
-                        color: Colors.white,
-                        style: BorderStyle.solid),
+                          width: 0.5,
+                          color: Colors.white,
+                        ) +
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
                     icon: const Icon(Icons.more_vert),
                     color: Theme.of(context).colorScheme.primary,
                     itemBuilder: (context) => [
