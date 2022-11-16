@@ -80,6 +80,8 @@ class _TodoScreenState extends State<TodoScreen> {
                 validator: (value) {
                   if (value == null) {
                     return 'Please write your title';
+                  } else if (value.isEmpty) {
+                    return 'Please write your title';
                   }
                   return null;
                 },
