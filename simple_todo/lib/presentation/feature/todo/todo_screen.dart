@@ -52,12 +52,26 @@ class _TodoScreenState extends State<TodoScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('TODO details'),
+        centerTitle: true,
         actions: [
-          exist
-              ? PopupMenuButton(
-                  icon: const Icon(Icons.more_vert),
-                  itemBuilder: (_) {
-                    return [
+          Theme(
+            data: Theme.of(context).copyWith(
+              dividerTheme: const DividerThemeData(
+                color: Colors.white,
+              ),
+              iconTheme:
+                  IconThemeData(color: Theme.of(context).colorScheme.secondary),
+              textTheme: const TextTheme().apply(bodyColor: Colors.white),
+            ),
+            child: exist
+                ? PopupMenuButton<int>(
+                    shape: Border.all(
+                        width: 0.2,
+                        color: Colors.white,
+                        style: BorderStyle.solid),
+                    icon: const Icon(Icons.more_vert),
+                    color: Theme.of(context).colorScheme.primary,
+                    itemBuilder: (context) => [
                       PopupMenuItem(
                         onTap: () => widget.model!.toggleCompleteStatus(),
                         child: widget.model!.isComplete
