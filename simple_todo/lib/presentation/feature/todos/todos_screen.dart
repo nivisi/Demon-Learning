@@ -62,10 +62,13 @@ class TodosScreen extends StatelessWidget {
                 child: const TodoTile(),
               ),
             ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).pushNamed(TodoScreen.routeName),
-        child: Icon(Icons.add),
-      ),
+      floatingActionButton: todo.todolist.isEmpty
+          ? null
+          : FloatingActionButton(
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(TodoScreen.routeName),
+              child: const Icon(Icons.add),
+            ),
     );
   }
 }
