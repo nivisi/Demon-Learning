@@ -16,4 +16,12 @@ class TodoList with ChangeNotifier {
     _todolist.add(todo);
     notifyListeners();
   }
+
+  void updateTodo(TodoModel todo) {
+    final todoIndex = _todolist.indexWhere((td) => td.id == todo.id);
+    if (todoIndex >= 0) {
+      _todolist[todoIndex] = todo;
+      notifyListeners();
+    }
+  }
 }
