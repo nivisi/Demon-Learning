@@ -150,9 +150,9 @@ class _TodoScreenState extends State<TodoScreen> {
                   labelText: 'Description',
                 ),
                 maxLines: 5,
-                keyboardType: TextInputType.multiline,
+                textInputAction: TextInputAction.send,
                 focusNode: _descriptionFocusNode,
-                onFieldSubmitted: (_) {},
+                onFieldSubmitted: (_) => _saveForm(),
                 onSaved: (newValue) => widget.model = TodoModel(
                   id: widget.model!.id,
                   title: widget.model!.title,
