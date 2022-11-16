@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../widgets/todo_tile.dart';
 import '/domain/todo_list.dart';
+import '../todo/todo_screen.dart';
 
 /// Displays the list of all the todo items.
 class TodosScreen extends StatelessWidget {
@@ -20,7 +21,9 @@ class TodosScreen extends StatelessWidget {
         title: const Text('Your to-do list'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(TodoScreen.routeName);
+            },
             icon: const Icon(
               Icons.add,
             ),
@@ -45,7 +48,9 @@ class TodosScreen extends StatelessWidget {
                   ),
                   FloatingActionButton(
                     elevation: 0,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(TodoScreen.routeName);
+                    },
                     child: const Icon(Icons.add),
                   ),
                 ],
