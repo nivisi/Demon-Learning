@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import './domain/todo_list.dart';
 import 'package:simple_todo/presentation/feature/todos/todos_screen.dart';
+import './presentation/feature/todo/todo_screen.dart';
 
 void main() {
   // Here you can init your data.
@@ -26,6 +27,9 @@ class SimpleTodoApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: const TodosScreen(),
+        routes: {
+          TodoScreen.routeName: (context) => TodoScreen(),
+        },
       ),
     );
   }
