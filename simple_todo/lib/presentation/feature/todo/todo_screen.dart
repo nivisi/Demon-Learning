@@ -51,7 +51,7 @@ class _TodoScreenState extends State<TodoScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('What\'s here?'),
+        title: const Text('TODO details'),
         actions: [
           exist
               ? PopupMenuButton(
