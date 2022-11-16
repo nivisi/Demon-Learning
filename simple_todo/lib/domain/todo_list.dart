@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 import './todo_model.dart';
 
@@ -23,5 +23,12 @@ class TodoList with ChangeNotifier {
       _todolist[todoIndex] = todo!;
       notifyListeners();
     }
+  }
+
+  void deleteTodo(String? id, BuildContext context) {
+    final existingTodoIndex = _todolist.indexWhere((td) => td.id == id);
+    _todolist.removeAt(existingTodoIndex);
+    notifyListeners();
+    Navigator.of(context).pop();
   }
 }
