@@ -51,7 +51,9 @@ class _TodoScreenState extends State<TodoScreen> {
             children: [
               TextFormField(
                 initialValue: exist ? widget.model?.title : null,
-                decoration: const InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(
+                  labelText: 'Title',
+                ),
                 textInputAction: TextInputAction.next,
                 onFieldSubmitted: (_) =>
                     FocusScope.of(context).requestFocus(_descriptionFocusNode),
@@ -67,7 +69,22 @@ class _TodoScreenState extends State<TodoScreen> {
                   createdAt: exist ? widget.model!.createdAt : DateTime.now(),
                 ),
               ),
-              TextFormField(),
+              TextFormField(
+                initialValue: exist ? widget.model?.description : null,
+                decoration: const InputDecoration(
+                  labelText: 'Description',
+                ),
+                maxLines: 5,
+                keyboardType: TextInputType.multiline,
+                focusNode: _descriptionFocusNode,
+                onFieldSubmitted: (_) {},
+                onSaved: (newValue) => widget.model = TodoModel(
+                  id: widget.model!.id,
+                  title: widget.model!.title,
+                  createdAt: widget.model!.createdAt,
+                  description: newValue,
+                ),
+              ),
             ],
           ),
         ),
