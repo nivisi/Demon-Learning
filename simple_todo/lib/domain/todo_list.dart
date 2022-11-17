@@ -66,12 +66,33 @@ class TodoList with ChangeNotifier {
     if (todoIndex >= 0) {
       _todolist[todoIndex] = todo!;
       notifyListeners();
+      final sharedPrefs = await SharedPreferences.getInstance();
+      if (!sharedPrefs.containsKey(_userList)) {
+        return;
+      }
+      final jsonString = sharedPrefs.getString(_userList);
+      if (jsonString == null) {
+        return;
+      }
+      sharedPrefs.clear();
+      final privateList = _todoListFromJson(jsonString);
+      privateList[todoIndex] = todo;
+      sharedPrefs.setString(_userList, _todoListToJson());
     }
   }
 
-  void deleteTodo(String? id) {
+  Future<void> deleteTodo(String? id) async {
     final existingTodoIndex = _todolist.indexWhere((td) => td.id == id);
     _todolist.removeAt(existingTodoIndex);
     notifyListeners();
+    final sharedPrefs = await SharedPreferences.getInstance();
+    final jsonString = sharedPrefs.getString(_userList);
+    if (jsonString == null) {
+      return;
+    }
+    sharedPrefs.clear();
+    final privateList = _todoListFromJson(jsonString);
+    privateList.removeAt(existingTodoIndex);
+    sharedPrefs.setString(_userList, _todoListToJson());
   }
 }
