@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import './todo_model.dart';
 
 class TodoList with ChangeNotifier {
-  final List<TodoModel> _todolist = [];
+  List<TodoModel> _todolist = [];
 
   List<TodoModel> get todolist {
     return [..._todolist];
@@ -11,17 +14,9 @@ class TodoList with ChangeNotifier {
 
   static const String _userList = '_userList';
 
-  Future<void> fethAndSetData() async {
-    final _sharedPrefs = await SharedPreferences.getInstance();
-    if (!_sharedPrefs.containsKey(_userList)) {
-      return;
-    }
-    final jsonString = _sharedPrefs.getString(_userList);
-    if (jsonString == null) {
-      return;
-    }
+  List<TodoModel> _todoListFromJson(String jsonString) {
     final extractedMap = json.decode(jsonString) as Map<String, dynamic>;
-    final List<TodoModel> _localList = [
+    return [
       ...(extractedMap['userList'] as List<dynamic>).map(
         (td) => TodoModel(
             id: td['id'],
@@ -31,17 +26,10 @@ class TodoList with ChangeNotifier {
             isComplete: td['isComlete']),
       ),
     ];
-    _todolist = _localList;
-    notifyListeners();
   }
 
-  Future<void> addTodo(TodoModel? todo) async {
-    if (todo == null) {
-      return;
-    }
-    _todolist.add(todo);
-    notifyListeners();
-    final todoJson = json.encode({
+  String _todoListToJson() {
+    return json.encode({
       'userList': _todolist
           .map((td) => {
                 'id': td.id,
@@ -52,16 +40,37 @@ class TodoList with ChangeNotifier {
               })
           .toList(),
     });
+  }
+
+  Future<void> fethAndSetData() async {
+    final _sharedPrefs = await SharedPreferences.getInstance();
+    if (!_sharedPrefs.containsKey(_userList)) {
+      return;
+    }
+    final jsonString = _sharedPrefs.getString(_userList);
+    if (jsonString == null) {
+      return;
+    }
+    _todolist = _todoListFromJson(jsonString);
+    notifyListeners();
+  }
+
+  Future<void> addTodo(TodoModel? todo) async {
+    if (todo == null) {
+      return;
+    }
+    _todolist.add(todo);
+    notifyListeners();
     final sharedPrefs = await SharedPreferences.getInstance();
     if (!sharedPrefs.containsKey(_userList)) {
-      sharedPrefs.setString(_userList, todoJson);
+      sharedPrefs.setString(_userList, _todoListToJson());
     } else {
       sharedPrefs.clear();
-      sharedPrefs.setString(_userList, todoJson);
+      sharedPrefs.setString(_userList, _todoListToJson());
     }
   }
 
-  void updateTodo(TodoModel? todo) {
+  Future<void> updateTodo(TodoModel? todo) async {
     final todoIndex = _todolist.indexWhere((td) => td.id == todo!.id);
     if (todoIndex >= 0) {
       _todolist[todoIndex] = todo!;
