@@ -9,7 +9,33 @@ class TodoList with ChangeNotifier {
     return [..._todolist];
   }
 
-  void addTodo(TodoModel? todo) {
+  static const String _userList = '_userList';
+
+  Future<void> fethAndSetData() async {
+    final _sharedPrefs = await SharedPreferences.getInstance();
+    if (!_sharedPrefs.containsKey(_userList)) {
+      return;
+    }
+    final jsonString = _sharedPrefs.getString(_userList);
+    if (jsonString == null) {
+      return;
+    }
+    final extractedMap = json.decode(jsonString) as Map<String, dynamic>;
+    final List<TodoModel> _localList = [
+      ...(extractedMap['userList'] as List<dynamic>).map(
+        (td) => TodoModel(
+            id: td['id'],
+            title: td['title'],
+            createdAt: DateTime.parse(td['createdAt']),
+            description: td['description'],
+            isComplete: td['isComlete']),
+      ),
+    ];
+    _todolist = _localList;
+    notifyListeners();
+  }
+
+  Future<void> addTodo(TodoModel? todo) async {
     if (todo == null) {
       return;
     }
