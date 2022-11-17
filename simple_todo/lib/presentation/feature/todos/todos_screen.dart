@@ -6,8 +6,28 @@ import '/domain/todo_list.dart';
 import '../todo/todo_screen.dart';
 
 /// Displays the list of all the todo items.
-class TodosScreen extends StatelessWidget {
+class TodosScreen extends StatefulWidget {
   const TodosScreen({super.key});
+
+  @override
+  State<TodosScreen> createState() => _TodosScreenState();
+}
+
+class _TodosScreenState extends State<TodosScreen> {
+  Future? todosFuture;
+
+  Future _obtainTodo() {
+    return Provider.of<TodoList>(
+      context,
+      listen: false,
+    ).fethAndSetData();
+  }
+
+  @override
+  void initState() {
+    todosFuture = _obtainTodo();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
