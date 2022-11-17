@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import './domain/todo_list.dart';
@@ -10,6 +11,10 @@ void main() {
   // For now, simply store it in shared prefs.
 
   // https://pub.dev/packages/shared_preferences
+
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   runApp(const SimpleTodoApp());
 }
