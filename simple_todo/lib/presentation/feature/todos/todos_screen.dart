@@ -53,43 +53,51 @@ class _TodosScreenState extends State<TodosScreen> {
           ),
         ],
       ),
-      body: todo.todolist.isEmpty
-          ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Here is empty list!\nAdd your first To Do!',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+      body: FutureBuilder(
+        future: todosFuture,
+        builder: (context, snapshot) => snapshot.connectionState ==
+                ConnectionState.waiting
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : todo.todolist.isEmpty
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Here is empty list!\nAdd your first To Do!',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        FloatingActionButton(
+                          elevation: 0,
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(
+                              TodoScreen.routeName,
+                            );
+                          },
+                          child: const Icon(
+                            Icons.add,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : ListView.builder(
+                    itemCount: todo.todolist.length,
+                    itemBuilder: (context, i) => ChangeNotifierProvider.value(
+                      value: todo.todolist[i],
+                      child: const TodoTile(),
                     ),
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  FloatingActionButton(
-                    elevation: 0,
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(
-                        TodoScreen.routeName,
-                      );
-                    },
-                    child: const Icon(
-                      Icons.add,
-                    ),
-                  ),
-                ],
-              ),
-            )
-          : ListView.builder(
-              itemCount: todo.todolist.length,
-              itemBuilder: (context, i) => ChangeNotifierProvider.value(
-                value: todo.todolist[i],
-                child: const TodoTile(),
-              ),
-            ),
+      ),
       floatingActionButton: todo.todolist.isEmpty
           ? null
           : FloatingActionButton(
