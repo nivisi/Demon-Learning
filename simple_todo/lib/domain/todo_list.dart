@@ -41,6 +41,24 @@ class TodoList with ChangeNotifier {
     }
     _todolist.add(todo);
     notifyListeners();
+    final todoJson = json.encode({
+      'userList': _todolist
+          .map((td) => {
+                'id': td.id,
+                'title': td.title,
+                'description': td.description,
+                'createdAt': td.createdAt.toIso8601String(),
+                'isComlete': td.isComplete,
+              })
+          .toList(),
+    });
+    final sharedPrefs = await SharedPreferences.getInstance();
+    if (!sharedPrefs.containsKey(_userList)) {
+      sharedPrefs.setString(_userList, todoJson);
+    } else {
+      sharedPrefs.clear();
+      sharedPrefs.setString(_userList, todoJson);
+    }
   }
 
   void updateTodo(TodoModel? todo) {
